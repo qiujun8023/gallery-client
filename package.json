@@ -11,7 +11,15 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "apollo-cache-inmemory": "^1.1.11",
+    "apollo-client": "^2.2.7",
+    "apollo-link": "^1.2.1",
+    "apollo-link-http": "^1.5.3",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
     "vue": "^2.5.2",
+    "vue-apollo": "^3.0.0-beta.5",
+    "vue-lazyload": "^1.2.2",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
@@ -41,6 +49,8 @@
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
