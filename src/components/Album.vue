@@ -1,46 +1,53 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="album" @click="answer" :style="style">
+    <div class="lock">
+      <i class="fa fa-lock"></i>
+    </div>
+    <span class="lable">
+        <span class="title">{{album.name}}</span>
+    </span>
+    <div class="container">
+      <div class="cover">
+        <div class="spinner">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+        <div class="cropped" data-src="${thumbnail}" data-type="bg"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import albumGql from '@/graphql/album'
-
 export default {
-  name: 'Album',
-  data () {
-    return {
-      msg: 'Hello World',
-      // Initialize your apollo data
-      ping: {}
+  props: {
+    album: {
+      type: Object,
+      required: true
+    },
+    width: {
+      type: Number,
+      required: true
+    },
+    height: {
+      type: Number,
+      required: true
     }
   },
-  apollo: {
-    // Simple query that will update the 'hello' vue property
-    // hello: gql`{hello}`,
-    ping: {
-      // gql query
-      query: albumGql,
-      // Static parameters
-      variables: {
-        path: '大学毕业'
+
+  computed: {
+    style () {
+      return {
+        width: this.width + 'px',
+        height: this.height + 'px'
       }
     }
   },
-  created () {
-    console.log(this.$route.params.path)
+
+  methods: {
+    answer () {
+      alert('123')
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
