@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// lazyload
+import VueLazyload from 'vue-lazyload'
+
 // GraphQL
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
@@ -11,6 +14,11 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import VueApollo from 'vue-apollo'
 
 Vue.config.productionTip = false
+
+// Install lazyload
+Vue.use(VueLazyload, {
+  dispatchEvent: true
+})
 
 // Install the vue plugin
 Vue.use(VueApollo)

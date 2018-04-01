@@ -1,9 +1,16 @@
 <template>
   <div class="gallery">
+    <div class="loading" v-if="$apollo.queries.gallery.loading">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div>
     <div class="row"
       :key="index"
       :style="{ height: row.height + 'px'}"
-      v-for="(row, index) of rows">
+      v-for="(row, index) of rows"
+      v-else>
       <template v-for="item in row.data">
         <album
           :key="item.path"
@@ -49,18 +56,20 @@ export default {
   apollo: {
     gallery: {
       query: albumGql,
-      variables: {
-        path: '/祁东'
+      variables () {
+        return {
+          path: this.$route.query.path || '/'
+        }
       }
     }
   },
 
   computed: {
     rows () {
+      console.log()
       if (!this.gallery) {
         return []
       }
-      console.log(this.gallery)
       return this.compute(this.gallery, this.getGalleryWidth())
     }
   },

@@ -64,6 +64,14 @@ body {
 .gallery {
     font-size: 0;
     margin: 10px 3px 20px 3px;
+    .loading .spinner {
+      width: 40px;
+      height: 40px;
+      margin-top: 40px;
+      .double-bounce1, .double-bounce2 {
+        background-color: #fff;
+      }
+    }
     .row {
         margin-bottom: 4px;
     }
@@ -72,6 +80,9 @@ body {
 .spinner {
   width: 30px;
   height: 30px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
   .double-bounce1, .double-bounce2 {
       width: 100%;
       height: 100%;
@@ -182,8 +193,15 @@ body {
         .cropped {
             width: 100%;
             height: 100%;
+            opacity: 0;
             background-position: center;
             background-size: cover;
+            transition: opacity 500ms linear;
+        }
+
+        .cropped[lazy=loaded] {
+          display: block;
+          opacity: 1;
         }
 
         &:first-child:nth-last-child(1) {
@@ -252,9 +270,12 @@ body {
         img {
             width: 100%;
             height: 100%;
-            display: none;
             opacity: 0;
-            transition: opacity 200ms linear;
+            transition: opacity 500ms linear;
+        }
+        img[lazy=loaded] {
+          display: block;
+          opacity: 1;
         }
     }
     .extra {
@@ -279,13 +300,4 @@ body {
         text-overflow: ellipsis;
         display: inline-block;
     }
-}
-
-.error.message {
-    border: 1px solid #fff3cf;
-    background-color: #fffaeb;
-    position: relative;
-    color: rgba(0,0,0,.65);
-    margin: 10px 5px;
-    padding: 15px;
 }

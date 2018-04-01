@@ -12,7 +12,7 @@
         <span class="title">{{image.name}}</span>
     </span>
     <div class="container">
-      <img :data-src="image.url.thumbnail" :alt="image.name">
+      <img v-lazy="image.url.thumbnail" :alt="image.name" @loaded="loaded">
     </div>
     <div class="extra">
       <p class="exif">
@@ -58,6 +58,14 @@ export default {
         width: this.width + 'px',
         height: this.height + 'px'
       }
+    }
+  },
+
+  methods: {
+    loaded ({ target }) {
+      let parent = target.parentElement.parentElement
+      let loading = parent.querySelector('.spinner')
+      loading.style.display = 'none'
     }
   }
 }

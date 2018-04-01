@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import '@/assets/less/main.less'
+import '@/assets/css/main.less'
 import Navbar from '@/components/Navbar'
 
 export default {

@@ -5,10 +5,11 @@ import Gallery from '@/components/Gallery'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: ':path(.*)',
-      name: 'Gallery',
+      path: '/',
+      name: 'gallery',
       component: Gallery
     }
   ]

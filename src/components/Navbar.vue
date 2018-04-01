@@ -1,11 +1,10 @@
 <template>
   <div class="navbar">
     <div class="breadcrumb">
-      <div class="item" :key="item.path" v-for="(item, index) in paths">
-        <a class="title" :href="item.path" v-if="!index">
+      <div class="item" :key="item.path" v-for="item in paths">
+        <router-link class="title" :to="{ name: 'gallery', query: { path: item.path }}">
           <span>{{item.name}}</span>
-        </a>
-        <a class="title" :href="item.path" v-else>{{item.name}}</a>
+        </router-link>
         <span class="separator">/</span>
       </div>
     </div>
