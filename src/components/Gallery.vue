@@ -66,7 +66,6 @@ export default {
 
   computed: {
     rows () {
-      console.log()
       if (!this.gallery) {
         return []
       }

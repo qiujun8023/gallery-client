@@ -1,8 +1,9 @@
 <template>
   <div class="navbar">
     <div class="breadcrumb">
-      <div class="item" :key="item.path" v-for="item in paths">
+      <div class="item" :key="item.path" v-for="(item, index) in paths">
         <router-link class="title" :to="{ name: 'gallery', query: { path: item.path }}">
+          <icon name="home" class="icon" v-if="!index"></icon>
           <span>{{item.name}}</span>
         </router-link>
         <span class="separator">/</span>
@@ -12,7 +13,14 @@
 </template>
 
 <script>
+import 'vue-awesome/icons/home'
+import Icon from 'vue-awesome/components/Icon'
+
 export default {
+  components: {
+    Icon
+  },
+
   data () {
     return {
       paths: [
