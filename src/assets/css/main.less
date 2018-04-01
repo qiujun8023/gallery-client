@@ -2,7 +2,6 @@
 // @import '~photoswipe/dist/default-skin/default-skin.css';
 // @import '~sweetalert/dist/sweetalert.css';
 // @import '~font-awesome/less/font-awesome.less';
-
 body {
     margin: 0;
     padding: 0;
@@ -13,21 +12,18 @@ body {
     width: 100%;
     background: #FFF;
     border-bottom: 1px solid #E8ECF0;
-
     .breadcrumb {
         height: 50px;
         font-size: 14px;
         line-height: 50px;
         padding: 0 10px;
     }
-
     .title {
-      vertical-align: middle;
-      .icon {
         vertical-align: middle;
-      }
+        .icon {
+            vertical-align: middle;
+        }
     }
-
     .description {
         padding: 10px 10px;
         margin-top: -20px;
@@ -38,29 +34,25 @@ body {
 
 .breadcrumb>.item {
     display: inline-block;
-
     a.title {
-        color: rgba(0,0,0,.65);
+        color: rgba(0, 0, 0, .65);
         transition: color .3s;
         background: transparent;
         text-decoration: none;
         outline: none;
         cursor: pointer;
-
         &:hover {
             color: #49a9ee;
         }
     }
-
     .separator {
         margin: 0 3px;
-        color: rgba(0,0,0,.3);
+        color: rgba(0, 0, 0, .3);
     }
-
     &:last-child {
         a.title {
             font-weight: 700;
-            color: rgba(0,0,0,.65);
+            color: rgba(0, 0, 0, .65);
         }
         .separator {
             display: none;
@@ -68,16 +60,17 @@ body {
     }
 }
 
-.gallery {
+.content {
     font-size: 0;
     margin: 10px 3px 20px 3px;
     .loading .spinner {
-      width: 40px;
-      height: 40px;
-      margin-top: 40px;
-      .double-bounce1, .double-bounce2 {
-        background-color: #fff;
-      }
+        width: 40px;
+        height: 40px;
+        margin-top: 40px;
+        .double-bounce1,
+        .double-bounce2 {
+            background-color: #fff;
+        }
     }
     .row {
         margin-bottom: 4px;
@@ -85,32 +78,35 @@ body {
 }
 
 .spinner {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  .double-bounce1, .double-bounce2 {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: #e8ecf0;
-      opacity: 0.6;
-      position: absolute;
-      top: 0;
-      left: 0;
-      animation: bounce 2.0s infinite ease-in-out;
-  }
-  .double-bounce2 {
-      animation-delay: -1.0s;
-  }
-  @keyframes bounce {
-      0%, 100% {
-          transform: scale(0.0);
-      } 50% {
-          transform: scale(1.0);
-      }
-  }
+    width: 30px;
+    height: 30px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    .double-bounce1,
+    .double-bounce2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #e8ecf0;
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: bounce 2.0s infinite ease-in-out;
+    }
+    .double-bounce2 {
+        animation-delay: -1.0s;
+    }
+    @keyframes bounce {
+        0%,
+        100% {
+            transform: scale(0.0);
+        }
+        50% {
+            transform: scale(1.0);
+        }
+    }
 }
 
 .album,
@@ -125,7 +121,6 @@ body {
     user-select: none;
     margin: 2px;
     background: #FFF;
-
     .spinner {
         top: 50%;
         left: 50%;
@@ -133,7 +128,6 @@ body {
         margin-left: -15px;
         position: absolute;
     }
-
     .lable {
         font-size: 12px;
         text-align: center;
@@ -148,8 +142,7 @@ body {
         word-break: break-all;
         opacity: 0;
         transition: opacity 200ms linear;
-        background-image: linear-gradient(rgba(0,0,0,0) 65%,rgba(0,0,0,0.35));
-
+        background-image: linear-gradient(rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.35));
         span {
             position: absolute;
             left: 0;
@@ -158,7 +151,6 @@ body {
             color: #E8ECF0;
         }
     }
-
     .container {
         width: 100%;
         height: 100%;
@@ -170,11 +162,10 @@ body {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,.4);
+        background: rgba(0, 0, 0, .4);
         color: #fff;
         font-size: 40px;
         z-index: 1;
-
         .icon {
             position: absolute;
             left: 50%;
@@ -183,12 +174,10 @@ body {
             margin-top: -20px;
         }
     }
-
     .lable {
         opacity: 1;
         z-index: 2;
     }
-
     .cover {
         width: 50%;
         height: 50%;
@@ -196,7 +185,6 @@ body {
         border: 0px solid #E8ECF0;
         box-sizing: border-box;
         position: relative;
-
         .cropped {
             width: 100%;
             height: 100%;
@@ -205,36 +193,29 @@ body {
             background-size: cover;
             transition: opacity 500ms linear;
         }
-
         .cropped[lazy=loaded] {
-          display: block;
-          opacity: 1;
+            display: block;
+            opacity: 1;
         }
-
         &:first-child:nth-last-child(1) {
             width: 100%;
             height: 100%;
         }
-
         &:first-child:nth-last-child(2),
-        &:first-child:nth-last-child(2) ~ .cover {
+        &:first-child:nth-last-child(2)~.cover {
             width: 100%;
         }
-
         &:first-child:nth-last-child(2) {
             border-bottom-width: 1px;
         }
-
-        &:first-child:nth-last-child(2) ~ .cover {
+        &:first-child:nth-last-child(2)~.cover {
             border-top-width: 1px;
         }
-
         &:first-child:nth-last-child(3) {
             width: 100%;
             border-bottom-width: 1px;
         }
-
-        &:first-child:nth-last-child(3) ~ .cover {
+        &:first-child:nth-last-child(3)~.cover {
             border-top-width: 1px;
             &:nth-last-child(1) {
                 border-left-width: 1px;
@@ -243,23 +224,19 @@ body {
                 border-right-width: 1px;
             }
         }
-
         &:first-child:nth-last-child(4) {
             border-right-width: 1px;
             border-bottom-width: 1px;
         }
-
-        &:first-child:nth-last-child(4) ~ .cover {
+        &:first-child:nth-last-child(4)~.cover {
             &:nth-last-child(1) {
                 border-left-width: 1px;
                 border-top-width: 1px;
             }
-
             &:nth-last-child(2) {
                 border-right-width: 1px;
                 border-top-width: 1px;
             }
-
             &:nth-last-child(3) {
                 border-left-width: 1px;
                 border-bottom-width: 1px;
@@ -281,8 +258,8 @@ body {
             transition: opacity 500ms linear;
         }
         img[lazy=loaded] {
-          display: block;
-          opacity: 1;
+            display: block;
+            opacity: 1;
         }
     }
     .extra {

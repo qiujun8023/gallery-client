@@ -1,16 +1,9 @@
 <template>
   <div class="gallery">
-    <div class="loading" v-if="$apollo.queries.gallery.loading">
-      <div class="spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
-      </div>
-    </div>
     <div class="row"
       :key="index"
       :style="{ height: row.height + 'px'}"
-      v-for="(row, index) of rows"
-      v-else>
+      v-for="(row, index) of rows">
       <template v-for="item in row.data">
         <album
           :key="item.path"
@@ -34,7 +27,6 @@
 <script>
 import Album from '@/components/Album'
 import Image from '@/components/Image'
-import albumGql from '@/graphql/album'
 
 const MAX_ROW_HEIGHT = 200
 const MID_ROW_HEIGHT = 150
@@ -42,26 +34,16 @@ const MID_ROW_HEIGHT = 150
 export default {
   name: 'gallery',
 
+  props: {
+    gallery: {
+      type: Object,
+      required: true
+    }
+  },
+
   components: {
     'album': Album,
     'photo': Image
-  },
-
-  data () {
-    return {
-      gallery: null
-    }
-  },
-
-  apollo: {
-    gallery: {
-      query: albumGql,
-      variables () {
-        return {
-          path: this.$route.query.path || '/'
-        }
-      }
-    }
   },
 
   computed: {
