@@ -9,6 +9,7 @@
         <span class="separator">/</span>
       </div>
     </div>
+    <div class="description">{{description}}</div>
   </div>
 </template>
 
@@ -17,26 +18,40 @@ import 'vue-awesome/icons/home'
 import Icon from 'vue-awesome/components/Icon'
 
 export default {
+  props: {
+    path: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String
+    }
+  },
+
   components: {
     Icon
   },
 
-  data () {
-    return {
-      paths: [
-        {
-          name: '首页',
-          path: '/'
-        },
-        {
-          name: '大学时光',
-          path: '/大学时光'
-        },
-        {
-          name: '大学毕业',
-          path: '/大学时光/大学毕业'
-        }
-      ]
+  computed: {
+    paths () {
+      let paths = [{
+        name: '首页',
+        path: '/'
+      }]
+
+      let names = this.path.split('/').filter(Boolean)
+      for (let name of names) {
+        let path = this.pathJoin(paths[paths.length - 1].path, name)
+        paths.push({ name, path })
+      }
+      console.log(JSON.stringify(paths, null, 4))
+      return paths
+    }
+  },
+
+  methods: {
+    pathJoin (...paths) {
+      return paths.join('/').replace(/\/{2,}/g, '/')
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <navbar></navbar>
+    <navbar :path="path" :description="description"></navbar>
     <div class="content">
       <div class="loading" v-if="loading">
         <div class="spinner">
@@ -36,13 +36,21 @@ export default {
       query: albumGql,
       variables () {
         return {
-          path: this.$route.query.path || '/'
+          path: this.path
         }
       }
     }
   },
 
   computed: {
+    path () {
+      return this.$route.query.path || '/'
+    },
+
+    description () {
+      return this.gallery ? this.gallery.description : null
+    },
+
     loading () {
       return this.$apollo.queries.gallery.loading
     }
