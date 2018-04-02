@@ -44,7 +44,6 @@ export default {
         let path = this.pathJoin(paths[paths.length - 1].path, name)
         paths.push({ name, path })
       }
-      console.log(JSON.stringify(paths, null, 4))
       return paths
     }
   },

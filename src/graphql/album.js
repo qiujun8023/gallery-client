@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
-export default gql`query Albums($path: String!, $answers: [AnswerInput]) {
-  gallery: album(path: $path, answers: $answers) {
+export default gql`query Albums($path: String!) {
+  gallery: album(path: $path) {
     path
     name
     description

@@ -25,7 +25,8 @@ Vue.use(VueApollo)
 
 const httpLink = new HttpLink({
   // You should use an absolute URL here
-  uri: '/api/graphql'
+  uri: '/api/graphql',
+  credentials: 'same-origin'
 })
 
 // Create the apollo client

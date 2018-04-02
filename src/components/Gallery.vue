@@ -35,10 +35,7 @@ export default {
   name: 'gallery',
 
   props: {
-    gallery: {
-      type: Object,
-      required: true
-    }
+    gallery: Object
   },
 
   components: {
