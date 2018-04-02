@@ -21,6 +21,7 @@
 <script>
 import 'vue-awesome/icons/lock'
 import Icon from 'vue-awesome/components/Icon'
+import answerUtil from '@/utils/answer'
 
 export default {
   components: {
@@ -38,6 +39,10 @@ export default {
     },
     height: {
       type: Number,
+      required: true
+    },
+    checkAnswer: {
+      type: Function,
       required: true
     }
   },
@@ -62,18 +67,25 @@ export default {
       loading.style.display = 'none'
     },
 
+    navigate (path) {
+      this.$router.push({
+        name: 'gallery',
+        query: { path }
+      })
+      document.documentElement.scrollTop = 0
+    },
+
     enter () {
-      if (this.isLocked) {
-        alert('locked')
-      } else {
-        this.$router.push({
-          name: 'gallery',
-          query: {
-            path: this.album.path
-          }
-        })
-        document.documentElement.scrollTop = 0
+      if (!this.isLocked) {
+        this.navigate(this.album.path)
+        return
       }
+
+      answerUtil(this.album.questions, this.checkAnswer).then((result) => {
+        if (result.value) {
+          this.navigate(this.album.path)
+        }
+      })
     }
   }
 }

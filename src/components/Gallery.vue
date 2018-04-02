@@ -10,6 +10,7 @@
           :album="item"
           :width="row.height"
           :height="row.height"
+          :checkAnswer="checkAnswer"
           v-if="item.type === 'ALBUM'">
         </album>
         <photo
@@ -35,7 +36,14 @@ export default {
   name: 'gallery',
 
   props: {
-    gallery: Object
+    gallery: {
+      type: Object,
+      required: false
+    },
+    checkAnswer: {
+      type: Function,
+      required: true
+    }
   },
 
   components: {

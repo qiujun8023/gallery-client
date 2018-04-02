@@ -61,7 +61,6 @@ body {
 }
 
 .content {
-    font-size: 0;
     margin: 10px 3px 20px 3px;
     .loading .spinner {
         width: 40px;
@@ -72,8 +71,19 @@ body {
             background-color: #fff;
         }
     }
-    .row {
-        margin-bottom: 4px;
+    .error.message {
+        border: 1px solid #fff3cf;
+        background-color: #fffaeb;
+        position: relative;
+        color: rgba(0, 0, 0, .65);
+        margin: 10px 5px;
+        padding: 15px;
+    }
+    .gallery {
+        font-size: 0;
+        .row {
+            margin-bottom: 4px;
+        }
     }
 }
 

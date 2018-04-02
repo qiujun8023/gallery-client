@@ -8,7 +8,12 @@
           <div class="double-bounce2"></div>
         </div>
       </div>
-      <gallery :gallery="gallery" v-else></gallery>
+      <div class="error message" v-else-if="error">
+        <i class="fa fa-times-circle"></i>
+        <span class="content" v-if="!gallery.questions.length">{{error}}</span>
+        <span class="content" @click="askQuestion(gallery.questions)" v-else>{{error}}</span>
+      </div>
+      <gallery :gallery="gallery" :checkAnswer="checkAnswer" v-else></gallery>
     </div>
   </div>
 </template>
@@ -28,6 +33,7 @@ export default {
 
   data () {
     return {
+      error: null,
       gallery: null
     }
   },
@@ -41,16 +47,16 @@ export default {
         }
       },
       update (data) {
-        let questions = data.gallery ? data.gallery.questions : []
+        this.error = null
+        let { questions, albums, images } = data.gallery || {}
         if (questions && questions.length) {
-          let checkAnswer = this.checkAnswer.bind(this)
-          answerUtil(questions, checkAnswer).then((result) => {
-            console.log(result)
-          })
-          return null
+          this.askQuestion(questions)
+        } else if (!albums.length && !images.length) {
+          this.error = '相册中还没有内容呢'
         }
         return data.gallery
-      }
+      },
+      fetchPolicy: 'network-only'
     }
   },
 
@@ -80,6 +86,21 @@ export default {
         }
       }).then(({ data: { answer: { allowed } } }) => {
         return allowed.indexOf(path) !== -1
+      })
+    },
+
+    askQuestion (questions) {
+      answerUtil(questions, this.checkAnswer).then((result) => {
+        if (!result.value) {
+          this.error = '需要正确回答问题后才能访问！'
+          return null
+        }
+
+        this.$apollo.queries.gallery.fetchMore({
+          updateQuery: (previousResult, { fetchMoreResult }) => {
+            return fetchMoreResult
+          }
+        })
       })
     }
   }
