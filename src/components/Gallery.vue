@@ -51,18 +51,24 @@ export default {
     'photo': Image
   },
 
+  data () {
+    return {
+      width: window.document.body.clientWidth
+    }
+  },
+
   computed: {
     rows () {
       if (!this.gallery) {
         return []
       }
-      return this.compute(this.gallery, this.getGalleryWidth())
+      return this.compute(this.gallery, this.width)
     }
   },
 
   methods: {
-    getGalleryWidth () {
-      return window.document.body.clientWidth
+    resize () {
+      this.width = window.document.body.clientWidth
     },
 
     getRowHeight (totalWidth, count, ratio) {
@@ -118,6 +124,14 @@ export default {
       }
       return rows
     }
+  },
+
+  created () {
+    window.addEventListener('resize', this.resize)
+  },
+
+  beforeDestory () {
+    window.removeEventListener('resize', this.resize)
   }
 }
 </script>

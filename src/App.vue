@@ -46,7 +46,11 @@ export default {
           path: this.path
         }
       },
-      update (data) {
+      update (data, b, c) {
+        if (data.gallery === this.gallery) {
+          return data.gallery
+        }
+
         this.error = null
         let { questions, albums, images } = data.gallery || {}
         if (questions && questions.length) {
