@@ -16,15 +16,13 @@ export default (questions, checkAnswer) => {
     options.push({
       title: question,
       input: 'text',
-      animation: 'pop',
-      // closeOnConfirm: false,
-      // closeOnCancel: !back,
-      // allowOutsideClick: !back,
+      showCloseButton: true,
       showLoaderOnConfirm: true,
       inputPlaceholder: '请输入答案...',
       showConfirmButton: true,
       confirmButtonText: '确认',
-      showCancelButton: true,
+      confirmButtonColor: '#8CD4F5',
+      showCancelButton: false,
       cancelButtonText: '取消',
       progressSteps,
       preConfirm: async (answer) => {

@@ -160,7 +160,7 @@ export default {
       galleryElements[i].onclick = this.onThumbnailClick.bind(this)
     }
 
-    let { pid, gid } = this.$route.params
+    let { pid, gid } = this.$route.query
     if (pid && gid) {
       let galleryElement = galleryElements[gid - 1]
       let imageElements = this.findImageElements(galleryElement)
