@@ -23,6 +23,7 @@ import Navbar from '@/components/Navbar'
 import Gallery from '@/components/Gallery'
 import albumGql from '@/graphql/album'
 import answerGql from '@/graphql/answer'
+import serverGql from '@/graphql/server'
 import answerUtil from '@/utils/answer'
 
 export default {
@@ -34,11 +35,16 @@ export default {
   data () {
     return {
       error: null,
-      gallery: null
+      gallery: null,
+      server: null
     }
   },
 
   apollo: {
+    server: {
+      query: serverGql
+    },
+
     gallery: {
       query: albumGql,
       variables () {
@@ -75,6 +81,16 @@ export default {
 
     loading () {
       return this.$apollo.queries.gallery.loading
+    },
+
+    title () {
+      if (!this.server) {
+        return null
+      } else if (!this.gallery || this.gallery.name === '/') {
+        return this.server.title
+      } else {
+        return this.gallery.name + ' - ' + this.server.title
+      }
     }
   },
 
@@ -106,6 +122,11 @@ export default {
           }
         })
       })
+    }
+  },
+  watch: {
+    title (title) {
+      document.title = title
     }
   }
 }
