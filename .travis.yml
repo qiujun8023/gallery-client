@@ -1,0 +1,31 @@
+language: node_js
+
+node_js:
+  - "lts/*"
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install -q
+
+before_script:
+  - rm -rf dist
+  - git clone https://$DEPLOY_TOKEN@$GIT_DEPLOY_REPO -b $GIT_DEPLOY_BRANCH dist
+  - cd dist && ls | xargs rm -rf && cd ..
+
+script:
+  - npm run build
+
+after_success:
+  - cd dist
+  - git config user.name $GIT_USER_NAME
+  - git config user.email $GIT_USER_EMAIL
+  - git add --all .
+  - git diff --quiet --exit-code --cached || git commit -m "Auto Build At `TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S'`"
+  - git push https://$DEPLOY_TOKEN@$GIT_DEPLOY_REPO HEAD:$GIT_DEPLOY_BRANCH
+
+branches:
+  only:
+    - master
