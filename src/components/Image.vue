@@ -2,6 +2,7 @@
   <div class="image"
     :style="style"
     :data-src="image.url.original"
+    :data-msrc="image.url.thumbnail"
     :data-size="image.meta.width + 'x' + image.meta.height"
     >
     <div class="spinner">
@@ -17,19 +18,19 @@
     <div class="extra">
       <p class="exif">
         <b><i class="fa fa-camera"></i></b>
-        <span>{{image.meta.model}}</span>
+        <span>{{metaModel}}</span>
       </p>
       <p class="exif">
         <b><i class="fa fa-image"></i></b>
-        <span>{{image.meta.name}}</span>
+        <span>{{image.name}}</span>
       </p>
       <p class="exif">
         <b><i class="fa fa-film"></i></b>
-        <span>{{image.meta.info}}</span>
+        <span>{{metaInfo}}</span>
       </p>
       <p class="exif">
         <b><i class="fa fa-clock-o"></i></b>
-        <span>{{image.meta.time}}</span>
+        <span>{{metaTime}}</span>
       </p>
     </div>
   </div>
@@ -58,6 +59,38 @@ export default {
         width: this.width + 'px',
         height: this.height + 'px'
       }
+    },
+
+    metaModel () {
+      return this.image.meta.EXIF.Model || 'Unknown'
+    },
+
+    metaInfo () {
+      let info = []
+      let {FNumber, ShutterSpeedValue, ISOSpeedRatings} = this.image.meta.EXIF
+      if (FNumber) {
+        FNumber = FNumber.split('/')
+        if (FNumber.length === 2) {
+          info.push('f/' + FNumber[0] / FNumber[1])
+        }
+      }
+      if (ShutterSpeedValue) {
+        ShutterSpeedValue = ShutterSpeedValue.split('/')
+        if (ShutterSpeedValue.length === 2) {
+          info.push('1/' + (2 ^ (ShutterSpeedValue[0] / ShutterSpeedValue[1])) + 's')
+        }
+      }
+      if (ISOSpeedRatings) {
+        info.push('ISO' + ISOSpeedRatings)
+      }
+      if (!info.length) {
+        return 'Unknown'
+      }
+      return info.join(', ')
+    },
+
+    metaTime () {
+      return this.image.meta.EXIF.DateTimeOriginal || 'Unknown'
     }
   },
 

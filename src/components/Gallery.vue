@@ -22,12 +22,14 @@
         </photo>
       </template>
     </div>
+    <photo-swipe></photo-swipe>
   </div>
 </template>
 
 <script>
 import Album from '@/components/Album'
 import Image from '@/components/Image'
+import PhotoSwipe from './PhotoSwipe'
 
 const MAX_ROW_HEIGHT = 200
 const MID_ROW_HEIGHT = 150
@@ -48,7 +50,8 @@ export default {
 
   components: {
     'album': Album,
-    'photo': Image
+    'photo': Image,
+    'photo-swipe': PhotoSwipe
   },
 
   data () {

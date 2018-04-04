@@ -114,4 +114,6 @@ export default {
 <style lang="less">
 @import './assets/css/main.less';
 @import '../node_modules/sweetalert2/dist/sweetalert2.min.css';
+@import '../node_modules/photoswipe/dist/photoswipe.css';
+@import '../node_modules/photoswipe/dist/default-skin/default-skin.css';
 </style>
