@@ -280,18 +280,29 @@ body {
 .exif {
     width: 50%;
     float: left;
-    b {
+    .icon {
         position: absolute;
-        .fa.fa-clock-o {
-            font-size: 16px;
+        &.model {
+          margin-top: 6px;
+        }
+        &.name {
+          margin-top: 6px;
+        }
+        &.film {
+          margin-top: 5px;
+        }
+        &.time {
+          margin-top: 3px;
         }
     }
     span {
-        padding: 0 20px;
+        padding: 0 25px;
         width: 100%;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         display: inline-block;
+        vertical-align: middle;
+        line-height: 26px;
     }
 }

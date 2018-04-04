@@ -17,19 +17,19 @@
     </div>
     <div class="extra">
       <p class="exif">
-        <b><i class="fa fa-camera"></i></b>
+        <icon class="model icon" name="camera"></icon>
         <span>{{metaModel}}</span>
       </p>
       <p class="exif">
-        <b><i class="fa fa-image"></i></b>
+        <icon class="name icon" name="image"></icon>
         <span>{{image.name}}</span>
       </p>
       <p class="exif">
-        <b><i class="fa fa-film"></i></b>
+        <icon class="film icon" name="film"></icon>
         <span>{{metaInfo}}</span>
       </p>
       <p class="exif">
-        <b><i class="fa fa-clock-o"></i></b>
+        <icon class="time icon" name="clock-o" scale="1.2"></icon>
         <span>{{metaTime}}</span>
       </p>
     </div>
@@ -37,6 +37,12 @@
 </template>
 
 <script>
+import 'vue-awesome/icons/camera'
+import 'vue-awesome/icons/image'
+import 'vue-awesome/icons/film'
+import 'vue-awesome/icons/clock-o'
+import Icon from 'vue-awesome/components/Icon'
+
 export default {
   props: {
     image: {
@@ -51,6 +57,10 @@ export default {
       type: Number,
       required: true
     }
+  },
+
+  components: {
+    Icon
   },
 
   computed: {
