@@ -13,7 +13,10 @@
         <span class="content" v-if="!gallery.questions.length">{{error}}</span>
         <span class="content" @click="askQuestion(gallery.questions)" v-else>{{error}}</span>
       </div>
-      <gallery :gallery="gallery" :checkAnswer="checkAnswer" v-else></gallery>
+      <div v-else>
+        <gallery :gallery="gallery" :checkAnswer="checkAnswer"></gallery>
+        <photo-swipe gallerySelector=".gallery" imageSelector=".image" titleSelector=".extra"></photo-swipe>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +24,7 @@
 <script>
 import Navbar from '@/components/Navbar'
 import Gallery from '@/components/Gallery'
+import PhotoSwipe from '@/components/PhotoSwipe'
 import albumGql from '@/graphql/album'
 import answerGql from '@/graphql/answer'
 import serverGql from '@/graphql/server'
@@ -29,7 +33,8 @@ import answerUtil from '@/utils/answer'
 export default {
   components: {
     Navbar,
-    Gallery
+    Gallery,
+    PhotoSwipe
   },
 
   data () {

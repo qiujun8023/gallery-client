@@ -69,11 +69,18 @@ import PhotoSwipe from 'photoswipe/dist/photoswipe'
 import PhotoSwipeUIDefault from 'photoswipe/dist/photoswipe-ui-default'
 
 export default {
-  data () {
-    return {
-      gallerySelector: '.gallery',
-      imageSelector: '.image',
-      titleSelector: '.extra'
+  props: {
+    gallerySelector: {
+      type: String,
+      required: true
+    },
+    imageSelector: {
+      type: String,
+      required: true
+    },
+    titleSelector: {
+      type: String,
+      required: true
     }
   },
 
@@ -140,7 +147,13 @@ export default {
           let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
           let rect = thumbnail.getBoundingClientRect()
           return {x: rect.left, y: rect.top + pageYScroll, w: rect.width}
-        }
+        },
+        shareButtons: [{
+          id: 'download',
+          label: '下载图片',
+          url: '{{raw_image_url}}',
+          download: true
+        }]
       }
 
       if (isFromURL) {
