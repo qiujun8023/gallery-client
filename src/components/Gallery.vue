@@ -56,7 +56,7 @@ export default {
 
   data () {
     return {
-      width: window.document.body.clientWidth
+      width: this.getRealWidth()
     }
   },
 
@@ -70,8 +70,12 @@ export default {
   },
 
   methods: {
+    getRealWidth () {
+      return window.document.body.clientWidth
+    },
+
     resize () {
-      this.width = window.document.body.clientWidth
+      this.width = this.getRealWidth()
     },
 
     getRowHeight (totalWidth, count, ratio) {
@@ -135,6 +139,12 @@ export default {
 
   beforeDestory () {
     window.removeEventListener('resize', this.resize)
+  },
+
+  mounted () {
+    if (this.width !== this.getRealWidth()) {
+      this.resize()
+    }
   }
 }
 </script>
