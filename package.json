@@ -1,6 +1,6 @@
 {
   "name": "gallery-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Vue.js project",
   "author": "",
   "private": true,
@@ -8,7 +8,8 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "version": "echo $npm_package_version"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.11",
