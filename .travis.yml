@@ -1,7 +1,5 @@
 language: node_js
 
-sudo: required
-
 env:
   - PACKAGE_VERSION=$(npm --loglevel silent run version)
 
