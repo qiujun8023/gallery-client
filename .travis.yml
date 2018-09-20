@@ -17,7 +17,6 @@ install:
   - npm install -q
 
 script:
-  - echo $DOCKER_REPOSITORY $PACKAGE_VERSION
   - npm run build
   - docker build -t $DOCKER_REPOSITORY:$PACKAGE_VERSION -t $DOCKER_REPOSITORY:latest .
 
