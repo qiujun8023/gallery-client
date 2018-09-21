@@ -13,7 +13,6 @@
 
 > [DEMO](https://gallery.qiujun.me/)
 
-
 ## 部署
 
 ### 使用 Docker + Docker Compose 部署
@@ -72,12 +71,12 @@ curl http://localhost:8888
 | 字段   | 必填   | 描述   |
 |:----|:----|:----|
 | debug   | 是   | 调试模式   |
-| server.host   | 是   | 监听IP，Docker 部署请使用 0.0.0.0   |
-| server.port   | 是   | 监听端口，与 docker-compose 配置文件对应   |
+| server.host   | 是   | 监听IP，Docker 部署请使用 0.0.0.0   |
+| server.port   | 是   | 监听端口，docker-compose 配置文件中的端口需与此一致   |
 | server.baseUrl   | 是   | 外部访问地址，形如 [https://example.com/](https://example.com/)   |
 | server.title   | 是   | 网站标题   |
-| keys[0]   | 是   | 用来机密 Cookie 的随机字符串   |
-| keys[1]   | 是   | 用来机密 Cookie 的随机字符串   |
+| keys[0]   | 是   | 用来加密 Cookie 的随机字符串   |
+| keys[1]   | 是   | 用来加密 Cookie 的随机字符串   |
 | redis.host   | 是   | Redis 地址   |
 | redis.port   | 是   | Redis 端口   |
 | redis.keyPrefix   | 是   | Redis 键前缀   |
@@ -85,7 +84,7 @@ curl http://localhost:8888
 | upyun.operator   | 是   | 又拍云操作员名称   |
 | upyun.password   | 是   | 又怕云操作员密码   |
 | upyun.token   | 否   | 又拍云防盗链 Token，可不填   |
-| albums.[dir]   | 否   | [dir]为又怕云对应目录名称   |
+| albums.[dir]   | 否   | [dir]为又怕云存储对应目录名称   |
 | albumes.[dir].name   | 否   | 对 [dir] 展示时进行重命名   |
 | albums.[dir].description   | 否   | 对 [dir] 的描述   |
 | albums.[dir].question   | 否   | 将 [dir] 设置为回答问题可见   |
