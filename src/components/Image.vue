@@ -77,7 +77,7 @@ export default {
 
     metaInfo () {
       let info = []
-      let {FNumber, ShutterSpeedValue, ISOSpeedRatings} = this.image.meta.EXIF
+      let { FNumber, ShutterSpeedValue, ISOSpeedRatings } = this.image.meta.EXIF
       if (FNumber) {
         FNumber = FNumber.split('/')
         if (FNumber.length === 2) {

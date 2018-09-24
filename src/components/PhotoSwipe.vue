@@ -146,7 +146,7 @@ export default {
           let thumbnail = imageElements[index].el.getElementsByTagName('img')[0]
           let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
           let rect = thumbnail.getBoundingClientRect()
-          return {x: rect.left, y: rect.top + pageYScroll, w: rect.width}
+          return { x: rect.left, y: rect.top + pageYScroll, w: rect.width }
         },
         shareButtons: [{
           id: 'download',

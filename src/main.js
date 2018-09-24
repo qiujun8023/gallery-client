@@ -40,11 +40,8 @@ const apolloProvider = new VueApollo({
   defaultClient: apolloClient
 })
 
-/* eslint-disable no-new */
 new Vue({
-  el: '#app',
   router,
-  provide: apolloProvider.provide(),
-  components: { App },
-  template: '<App/>'
-})
+  apolloProvider,
+  render: h => h(App)
+}).$mount('#app')
