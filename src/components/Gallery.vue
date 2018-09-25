@@ -122,7 +122,9 @@ export default {
           row = this.getInitRow()
         } else if (item === items[items.length - 1]) {
           row.height = Math.min(row.height, MID_ROW_HEIGHT)
-          row.height = Math.max(row.height, rows[rows.length - 1].height)
+          if (rows.length > 0) {
+            row.height = Math.max(row.height, rows[rows.length - 1].height)
+          }
           rows.push(row)
         }
       }
